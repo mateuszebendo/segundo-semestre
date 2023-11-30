@@ -1,0 +1,51 @@
+Aula 20 - RIP, OSPF, BGP (Roteamento Intra AS)
+-------------------------------------------------------------------------------------------------------------------------------------------
+RIP (Routing Information Protocol): 
+
+-Baseado em vetor de distâncias
+• Métrica de roteamento: número de saltos (máximo = 15), cada enlace tem custo 1 
+• Vetores de distância anunciados a cada 30 segundos 
+• Cada anúncio lista até 25 sub redes de destino 
+• Caso um vizinho não seja ouvido pro 180 segundos, vizinho/enlace declarado morto
+
+> O RIP se comunica com outros dispositivos através de um processo no nível de aplicação chamado de routed-d (daemon), que é executado em background em ambos os roteadores. 
+> Os anúncios são enviados em pacotes UDP, pela porta 520, periodicamente repetidos.
+------------------------------------------------------------------------------------------------------------------------------------------
+OSPF (Open Shortest Path First): 
+
+- Protocolo publicamente disponível 
+- Sucessor do RIP 
+- Baseado em Estado de Enlace
+- Mensagens OSPF diretamente sobre IP (ao invés de UDP ou TCP) 
+
+OBS: Protocolo Is-Is, praticamente idêntico ao OSPF. 
+
+Funcionalidades Avançadas do OSPF (não encontradas no RIP): 
+
+> Segurança: todas as mensagens são autenticadas (para prevenir ataques) 
+> Multipath: múltiplos caminhos de mesmo custo são permitidos (RIP seleciona um único) 
+> Para cada tipo de enlace, múltiplas métricas para diferentes valores de ToS
+> Suporte integrado para roteamento multicast
+> OSPF Hierárquico: para execução em grandes domínios
+
+OSPF Hierárquico: 
+
+- Hierarquia em dois níveis: área local e backbone
+• Anúnicios de estado de enlace apenas dentro de suas respectivas áreas 
+• Cada nó conhece detalhadamente apenas a topologia da sua área, mas conhece apenas o caminho mais curto para redes em outras áreas 
+
+- Roteadores de borda de área: "resume" distâncias para redes na própria área, anunciam para outros roteadores de borde de área
+- Roteadores de backbone: executam o OSPF limitado ao backbone 
+
+------------------------------------------------------------------------------------------------------------------------------------------
+BGP (Border Gateway Protocol): 
+
+- O padrão de fato para roteamento inter-domínios (a cola que junta a internet) 
+- O BGP fornece a cada AS uma maneira de: 
+• Obter informações sobre sub-redes alcançáveis de ASs vizinhos
+• Propagar informações de sub-redes alcançáveis externas para todos os roteadores da AS
+• Determinar as melhores rotas para outras redes com base nas informações das sub-redes alcançáveis e políticas diversas 
+- Permite a sub-rede anunciar sua existência para o resto da rede
+
+Conceitos Básicos: 
+
