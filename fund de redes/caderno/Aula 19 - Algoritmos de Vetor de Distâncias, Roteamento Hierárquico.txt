@@ -1,0 +1,44 @@
+Aula 19 - Algoritmos de Vetor de Distâncias, Roteamento Hierárquico
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ALGORITMO DE VETOR DE DISTÂNCIA: 
+
+- Distribuído: cada nó recebe informação de um ou mais vizinhos diretos, realiza cálculos e distribui o resultado
+- Iterativo: esse processo continua até que mais nenhuma informação seja trocada
+- Assíncrono: não requer que os nós rodem simultaneamente 
+
+Cada nó: ESPERA (mudança no custo de mensagem do vizinho) ---> RECALCULA (tabela de distâncias) ---> ALERTA (caso o caminho de menor custo para qualquer destino mude)
+
+Equação de Bellman-Ford:
+
+• dx(y) = minv{c(x,v) + dv(y)} 
+
+Usada para descobrir qual é o vizinho direto V que gerará o menor custo total dx(y) de X até Y
+
+Notação: 
+
+> dx(y): custo total do caminho de menor custo entre os roteadores x e y
+> c(x, v): custo do enlace entre x e v 
+> v: vizinho direto de x que será escolhido para encaminhamento dos dados com destino para y 
+> dv(y): custo total do caminho entre v e y com menor custo
+
+Ou seja: 
+
+Inicialmente, X possui uma estimativa do menor custo entre X e Y, dado por Dx(y) (essa estimativa é feita para todos os nós da rede). 
+
+Todos os nós X da rede deverão manter: 
+- o vetor de distâncias Dx = [Dx(y): y E N]
+- o custo para seus vizinhos diretos "v", dado por c(x, v) 
+- os vetores de distância dos seus vizinhos diretos Dv = [Dv(y): y E N]
+
+Os nó enviam e recebem regularmente um cópia dos vetores de distânicas para/dos nós vizinhos. Ao receber, ele aplica a equação de Bellman-For para cada nó y da rede, atualiza sua tabela e a envia para seus vizinhos. 
+
+"Notícias Boas" X "Notícias Ruins":
+
+Boas: 
+
+t0: Y detecta mudança no custo do enlace, atualiza vetor, informa seus vizinhos
+t1: Z recebe atualização de Y, atualiza sua tabela, computa novo custo mínimo para X, envia seu vetor para seus vizinhos
+t2: Y recebe atualização de Z, atualiza sua tabela. Menor custo para X não muda, logo Y não envia nova mensagem para Z
+
+Ruins: 
+

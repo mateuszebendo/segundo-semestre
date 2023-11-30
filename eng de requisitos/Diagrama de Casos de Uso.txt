@@ -1,0 +1,44 @@
+Diagrama de Casos de Uso 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Definição: 
+- São conjuntos de sequências de ações que um sistema desempenha para produzir um resultado observável de valor para atores específicos. 
+- Cada caso de uso especifica uma sequência de ações, incluindo suas possíveis variações, executadas durante as interações com os respectivos atores. 
+
+Um caso de uso expressa o que acontece quando uma instância do caso é executada. O nome deve ser ativo, composto por um verbo no infinitivo + substantivo. Ex: Aprovar crédito; Vender automóvel
+
+Atores: 
+
+Atores podem ser definidos como qualquer entidade que interaja com o sistema, tais como usuários hardwares externos e outros sistemas.  
+
+Identificar Casos de Uso: 
+
+• A partir dos atores: 
+
+1. Identificar os atores relacionados ao sistema ou à organização 
+2. Para cada ator, identificar os processos que eles iniciam ou em que participam 
+
+• A partir dos eventos: 
+
+1. Identificar os eventos externos aos quais o sistema deve responder 
+2. Relacionar os eventos aos atores e estes aos casos de uso
+
+ERRO COMUM: Identificar casos de uso que representam passos individuais operações ou ações. Ex: imprimir lista de compras 
+
+Tipos de Relação:
+
+https://media.discordapp.net/attachments/809238875741487115/1179608173208948836/image.png?ex=657a66b8&is=6567f1b8&hm=c76543779df71cb301d0a0ad1843bb3312af16e6a8d8511006b7d17f277335c8&=&format=webp&quality=lossless&width=607&height=335
+
+> Associação: O caminho de comunicação entre um ator e os casos de uso em que participa;
+> Inclusão: A inserção de um comportamento adicional que é comum a um ou mais casos de usos(fatoração);
+> Generalização: Um relacionamento entre um caso de uso geral e um mais específico que gerda e adiciona propriedades àquele (pode haver generalização de um ator);
+> Extensão: A inserção de um comportamento adicional em um caso de uso base, que não necessariamente tem que ser efetuado;
+
+Passo-a-Passo: 
+
+- Estabeleça o contexto do sistema, identificando os atores ao seu redor; 
+- Para cada ator, considere o comportamento que cada um espera ou requer que o sistema proporcione; 
+- Nomeie esses comportamentos comuns como casos de uso; 
+- Faça a fatoração do comportamento comum em novos casos de uso utilizados pelos outros;
+- Faça a fatoração do comportamento variante em novos casos de uso que estendem os fluxos dos cursos principais; 
+- Faça a modelagem desses casos de uso, atores e seus relacionamentos em um diagrama de casos de uso; 
+- Inclua eventuais notas (adornos) que elucidem aspectos que você julgue importantes; 

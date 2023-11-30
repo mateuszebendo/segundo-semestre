@@ -1,0 +1,65 @@
+Aula 18 - Roteamento Introdução, Algoritmos de Estado de Enlace 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+INTRODUÇÃO:
+
+- Algoritmo de roteamento determina caminho fim-a-fim pela rede 
+- Tabela de roteamento determina encaminhamento local este roteador 
+
+Algoritmo X Protocolo: 
+> O algoritmo determina quais ações deverão ser tomadas para que um roteador criar sua tabela de repasse. 
+> Já os protocolos, determinam as regras de comunicação entre os nós.
+
+Abstração de Grafo: Problemas de roteamento geralmente são representados por grafos com N roteadores e E enlaces. 
+https://docplayer.com.br/docs-images/47/23598934/images/page_2.jpg
+Desta forma, os algoritmos tentam achar o caminho de menor custo dentro desses grafos.
+
+Global X Descentralizado:
+
+> Global ou Algoritmos de Estado de Enlace: 
+
+Esses algoritmos usam a visão global da topologia da rede para calcular o melhor caminho até o destino. São chamados desta forma por saber o estado de cada enlace.
+ 
+> Descentralizado ou Algoritmos de Vetor de Distâncias:
+
+Roteador conhece vizinhos fisicamente conectados por enlace. Processo interativo de computação, troca de informações com os vizinhos. 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ALGORITMO DE ESTADO DE ENLACE:
+
+Construção da Topologia da Rede - Formada a partir da inundação da rede com estados de enlace, tais quais: De A para B por enlace 1, custo = 1. Essa informação é repassada por todos os nós. 
+
+• Todos os nós possuem a mesma base de dados. Desta forma, cada nó pode calcular o caminho mais curto para os demais nós.
+• A inundação possibilita a detecção de falhas de forma rápida e confiável
+
+- Todas as mensagens possuem um TIMESTAMP, para garantir que os roteadores tenham sempre a informação mais atualizada e descarte as mais antiga. 
+
+Algoritmo de Dijkstra (Daiquistra): 
+
+Notação: 
+> c(x,y): custo do enlace do nó x ao nó y 
+> D(v): custo corrente do caminho da origem ao destino v 
+> p(v): nó antecessor no caminho da origem ao nó v, imediatamente antes de v
+> N': conjunto de nós cujo caminho de menor custo já foi determinado
+
+Algoritmo:
+
+Inicialização: 
+
+N' = {u}
+para todos os nós v 
+	se v for um vizinho do nó u 
+		então D(v) = c(u,v)
+	senão D(v) = infinito
+
+Início do Loop: 
+	encontre x não contido em N' tal que D(x) é um mínimo
+	adcione x ao conjunto N'
+	atualize D(v) para cada vizinho v de x e ainda não em N': 
+		D(v)= min(D(v), D(x) + c(x,v))
+	/* o novo custo ao nó v é o custo velho a v ou o custo do menor caminho conhecido para x, mais o custo de x a v */ 
+VOLTE AO INÍCIO DO LOOP até que todos os nós da rede estejam em N'
+
+Problemas do Algoritmo de Dijkstra: 
+
+- Podem ocorrer oscilações 

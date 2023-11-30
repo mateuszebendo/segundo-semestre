@@ -1,0 +1,86 @@
+Aula 17 - NAT, ICMP e IPv6
+---------------------------------------------------------------------------------------------------------------------------
+NAT: Network Address Translation
+
+Esse protocolo cria uma pequena rede local,  onde todos os computadores acessam a internet através do IP de um roteador. A forma que um datagrama tem para diferenciar
+os hosts da subrede é através da porta de origem. Desta forma, endereços internos não são roteáveis. 
+
+Vantagens: 
+
+-Não é necessária um faixa de endereços do ISP, mas apenas um úmico endreço IP para todos os dispositivos
+-Pode-se alterar os endereços dos dispositivos çocais sem motificação ao mundo externo
+-Pode-se mudar de ISP sem que os endereços dos dispositivos locais sejam alterados
+-Dispositivos dentro da rede local não são explicitamente endereçáveis, visíveis ao mundo externo 
+-NAT CONSEGUE LIDAR COM A ESCASSEZ DE ENDEREÇOS IPV4
+
+Implementação:
+
+>Datagramas que saem: IP de origem e porta de origem são substituidos pelo IP do roteador e uma nova porta de origem 
+>Armazenamento: dentro da tabela NAT é salva uma relação entre o IP original com o do roteador e entre a porta de origem antiga e a nova
+>Datagramas que chegam: Os mesmo processo invertido
+
+Campo de número de porta: 16 bits (60000 conexões simultâneas)
+
+Controverso:
+
+-No NAT os roteadores só deveriam processar até a camada 3
+-NAT viola o argumento fim-a-fim
+-Escassezz de endereços deve ser resolvida pela adoção do IPv6
+
+NAT TRANSVERSAL: 
+
+Método utilizado para que cliente externo consiga se conectar com um host interno de um rede NAT, já que os IP internos são enderaçáveis somente para a rede LAN.
+
+Solução 1: 
+
+Configurar manualmente a NAT estaticamente para que as conexões sejam automaticamente endereçadas para uma dada porta do servidor. 
+
+Solução 2: 
+
+Usar o IGD (Internet Gateway Device Protocol). Permite que o host atrás da NAT, aprenda o endereço IP público, podendo adicionar/remover mapeamentos de porta temporários
+(versão automática da solução 1).
+
+Solução 3: 
+
+Um host intermediário (relay) faz a ponte entre o host da rede NAT e o outro. 
+
+---------------------------------------------------------------------------------------------------------------------------
+ICMP (Internet Control Message Protocol):
+
+Usado por hosts e roteadores para comunicar informações no nível de rede. (reportar erros; echo request/reply)
+
+Curiosidade: Protocolo de camada de rede, mas "sobre o IP"; Mensagens ICMP transportadas em datagramas IP 
+
+Traceroute:
+
+-> A Origem envia uma série de segmentos UDP para o destino. 
+-> O Primeiro com TTL = 1, o segundo com TTL = 2 e assim por diante.
+-> Quando o n-ésimo conjunto de datagramas chega ao n-ésimo roteador: TTL expira, roteador descarta datagrama e envia mensagem ICMP, com seu IP, reportando erro à origem
+-> No momento que a mensagem chega, origem registra o RTT
+-> Esse processo só cessa quando segmento UDP eventualmente chage ao destinatário
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+IPv6 
+
+Motivação:
+
+-Escassez de endereços IPv4
+-Formato do cabeçalho facilita e acelera o processamento/encaminhamento 
+-Alterações no cabeçalho para facilitar QoS
+
+Formato do Datagrama: 
+
+https://www.gta.ufrj.br/ensino/eel879/trabalhos_vf_2009_2/priscilla/images/cabecalho.jpg
+
+Classe de tráfego: identifica prioridade do datagrama em relação a outros gerados pela mesma origem 
+Rótulo de fluxo: identifica datagramas pertncentes a um mesmo "fluxo"
+Próximo cabeçalho: identifica protocolo para a carga útil do pacote
+
+Mudanças com relação ao IPv4: removeu o checksum (reduzir tempo de processamento), as opções são permitidas, mas fora do cabeçalho, indicado pelo valor do campo próximo e ICMPv6 
+
+Transição do IPv4 para o IPv6:
+
+Processo de atualização ainda em andamento, atualmente a rede opera com roteadores IPv4 e IPv6 misturados. 
+
+Isso é feito através do Tunalamento: datagramas IPv6 ao serem passados para roteadores IPv4 são transformados em carga útil (dados) dentro dos datagramas IPv4.

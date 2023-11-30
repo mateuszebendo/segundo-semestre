@@ -1,0 +1,20 @@
+#include <stdio.h> 
+#include <stdlib.h>
+#include <conio.h>
+
+int main (){
+
+ FILE *arquivo; 
+ char nomeArquivo[80];
+ int count; 
+
+ puts("*******************************");
+ puts("Informe o nome (com caminho) do arquivo a ser analisado: ");
+ gets(nomeArquivo);
+ arquivo = fopen(nomeArquivo, "rb+");
+
+
+
+
+   return 0;
+}
