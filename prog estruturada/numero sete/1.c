@@ -3,6 +3,9 @@
 #include "1b.c"
 #include "1c.c"
 #include "1d.c"
+#include "1e.c"
+#include "1f.c"
+
 
 int main (){
 
@@ -22,6 +25,12 @@ int main (){
 	
 	printf("O tamanho da segunda string e: %d bits \n", strlen(copy));
 	
-	printf("Tamanho da frase: %d \n-1 caso a primeira seja maior \n0 caso sejam iguais \n1 caso a segunda seja maior", strcmp(word, copy));
+	printf("Tamanho da frase: %d \n-1 caso a primeira seja maior \n0 caso sejam iguais \n1 caso a segunda seja maior \n", strcmp(word, copy));
+
+	touper(copy);
+	printf("A segunda frase com maiusculas fica: %s \n", copy); 
+	
+	lower(word);
+	printf("A primeira frase com minusculas fica: %s \n", word); 
 	return 0;
 };
