@@ -1,0 +1,21 @@
+R19 - O cabeçalho dos datagramas IPV6 apresentam diferenças bem notáveis, como a inclusão dos campos de: a Classe de Tráfego (identifica a prioridade do datagrama com relação a outros da mesma origem) e o Rótulo de Fluxo (identifica a qual fluxo o datagrama pertence). Além disso, o campo de checksum foi removido no IPV6.
+
+P21 - a) 192.168.1.13; 192.168.1.14; 192.168.1.15 (Supostamente, por ser tratar de um endereço de rede privada, o campo final, onde fica o 24, pode ser preenchido com qualquer número de 1 a 254).
+	  b) Endereço IP interno: 192.168.1.13, 192.168.1.13, 192.168.1.14, 192.168.1.15
+		 Porta interna: 80, 80, 80, 80, 80, 80
+		 Endereço IP externo: 24.34.112.235
+		 Porta Externa: 1025, 1026, 2035, 2186, 4556, 95423
+		 
+Revisão (CHAT GPT):
+
+Parte a): Você mencionou que os endereços IP que você escolheu são 192.168.1.13, 192.168.1.14 e 192.168.1.15. Isso está correto, pois esses endereços estão dentro do intervalo permitido de 192.168.1.1 a 192.168.1.254 para uma rede privada.
+
+Parte b): Aqui estão as diferenças que notei entre sua resposta e o gabarito:
+
+Endereço IP interno e porta interna: Sua resposta está correta. Você listou corretamente o endereço IP interno e a porta interna para cada conexão.
+
+Endereço IP externo: Sua resposta está correta. O endereço IP externo é o mesmo para todas as conexões, pois todas as conexões estão passando pelo mesmo roteador.
+
+Porta externa: Aqui é onde vejo uma diferença. No gabarito, as portas externas são 1025, 1026, 2035, 2186, 4556 e 95423. No entanto, você deve notar que as portas efêmeras geralmente variam de 1024 a 49151. Portanto, a porta 95423 listada no gabarito está fora deste intervalo e pode não ser válida dependendo do sistema.
+
+Espero que isso ajude a esclarecer as diferenças entre sua resposta e o gabarito! Se você tiver mais perguntas, fique à vontade para perguntar! 😊

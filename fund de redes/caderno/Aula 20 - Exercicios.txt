@@ -1,0 +1,12 @@
+R25. Os anúncios RIP são enviados em pacotes UDP, pela porta 520, e são periodicamente repetidos. Além disso, cada anúncio lista até 25 sub-redes, o RIP se comunica através de uma aplicação chamada routed-d e é baseado no vetor de distâncias.
+Já os anúncios OSPF, são baseados no vetor de estado de enlace, funciona diretamente sobre o IP, tem suas mensagens codificados e aceita multicast e multipath.
+
+R27. Pois os protocolos intra-AS podem variar conforme a necessidade da AS, dando mais liberdade para as ASs. Entretanto, na hora de dados serem trocados entre ASs é necessário um padrão para garantir a integridade dos mesmos. 
+
+R29. Sub-redes: conjunto de redes contidas dentro das ASs; Prefixo: Endereço dessa sub-redes; Rota BGP: Junção do prefixo com atributos BGP
+
+R30. O atributo NEXT-HOP é usado para indicar o próximo roteador dentro AS que servirá de próximo salto. Já o AS-PATH indica por quais ASs o anúncio do prefixo já passou.
+
+P36. Não, o que definará a rota que um roteador escolherá antes do comprimento AS-PATH serão questões políticas. 
+
+P37. a) eBGP; b) iBGP; c) eBGP; d) iBGP;

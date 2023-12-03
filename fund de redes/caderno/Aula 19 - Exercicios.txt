@@ -1,0 +1,36 @@
+R21. O Algoritmo de Estado de Enlace fornece aos roteadores uma visão geral da topologia da rede, permitindo que analisem as melhores rotas de forma independente. Além disso, as informações são passadas por um processo de inundação e as rotas são calculadas pelo Algoritmo de Dijkstra. 
+Já o Algoritmo de Vetor de Distâncias, funciona a partir da passagem de informação de nós vizinhos e sua compreesão da rede como um todo é limitada as informações que recebe deles. Os cálculos são feitos a partir da Equação de Bellman-Ford. 
+
+R22. Por a internet ser uma estrutura extremamente complexa, a divisão de sua organização e manutenção para várias entidades facilitou o gerenciamento, já que cada uma destas partes conseguem cuidar de sua porção com mais atenção.
+
+R23. Não, pois a forma como as informações são distruibuídas dentro da própria AS não influencia de forma direta como ela vai ser passada para outras AS, então fica de cada organização usar os protocolos que mais a converem.
+
+P28. 
+
+Equação de Bellman-Ford:
+
+• dx(y) = minv{c(x,v) + dv(y)}
+
+t1)
+	u	v	x	y	z
+v	∞	∞	∞	∞	∞
+x	∞	∞	∞	∞	∞
+z	∞	6	2	∞	0
+
+t2)
+	u	v	x	y	z
+v	1	0	3	∞	6
+x	∞	3	0	3	2
+z	7	6	2	5	0
+
+t3)
+	u	v	x	y	z
+v	1	0	3	3	5
+x	4	3	0	3	2
+z	6	5	2	5	0
+
+t4)
+	u	v	x	y	z
+v	1	0	3	3	5
+x	4	3	0	3	2
+z	6	5	2	5	0

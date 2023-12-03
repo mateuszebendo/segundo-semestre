@@ -49,3 +49,60 @@ BGP (Border Gateway Protocol):
 
 Conceitos Básicos: 
 
+-Dois roteadores BGP (peers) trocam mensagens BGP:
+-Anunciam caminhos para vários prefixos de sub-redes diferentes
+-Trocadas sobre conexões TCP semi-permanentes na porta 179
+
+Atributos de Caminhos e Rotas BGP:
+
+• Prefixos anunciados incluem atributos BGP (prefixo + atributos = rota);
+• Dois atributos importantes: 
+- AS-PATH: contém a lista de ASs pelos quais o anúncio do prefixo passou. Ex: AS 67, AS 17
+- NEXT-HOP: indica o roteador do AS do próximo salto (que pode estar a vários saltos do AS atual)
+• Roteador gateway que recebe anúncios utiliza política de importação para aceitá-los ou não. 
+
+BGP: Seleção de Rotas
+
+•Roteador pode aprender múltiplas rotas para um As de destino. Sendo assim, a seleção é baseada em:
+1. Valor do atributo Local Preference: decisão baseada em política
+2. AS-PATH mais curto
+3. Roteador NEXT-HOP mais próximo: roteamento batata-quente
+4. Critérios adicionais
+
+Mensagends BGP:
+
+-OPEN: abre conexão TCP para o peer e autentica transmissor;
+-UPDATE: anuncia um novo caminho (ou anula um anúnco antigo);
+-KEEPALIVE: mantém a conexão aberta em casa de inatividade prolongada; também serve de ACK para mensagem OPEN;
+-NOTIFICATION: reporta erros na mensagem anterior; também usada para fechar a conexão;
+
+------------------------------------------------------------------------------------------------------------------------------------------
+ENTRADA NA TABELA DO ROTEADOR:
+
+-Juntando Roteamento Hierárquico, BGP e OSPF
+
+Visão de alto nível: 
+
+1. Roteador passa a conhecer o prefixo
+2. Roteador determina a porta de saída para alcançar o prefixo
+3. Roteador insere mapeamento porta-prefixo na tabela de roteamento 
+
+Roteador Passa a Conhecer o Prefixo: 
+
+-Mensagem BGP contém rotas = prefixo + atributos (AS-PATH, NEXT-HOP...)
+Ex: Prefixo: 138.16.64/22; AS-PATH: AS3 AS131; NEXT-HOP: 201.33.12.125
+
+Roteamento Batata-Quente:
+
+- Suponha que haja duas ou mais melhores rotas BGP 
+- Então escolha aquela com o NEXT-HOP mais próximo (Use o OSPF para determinar qual gateway está mais próximo)
+
+Em síntese: 
+
+1. Roteador passa a conhecer o prefixo através de anúncios BGP de outros roteadores 
+2. Determina prota de saída para o prefixo:
+> Usa seleção de rotas BGP para encontrar a melhor rota BGP 
+> Usa OSPF para encontrar melhor rota interna ao AS que leva o pacote até o início da melhor rota BGP
+> Roteador identifica porta de saída para esta rota 
+3. Insere o mapeamento (prefixo, porta) na  tabela de roteamento
+Atributos de Caminhos e Rotas Bg

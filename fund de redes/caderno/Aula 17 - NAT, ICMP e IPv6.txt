@@ -59,7 +59,7 @@ Traceroute:
 -> No momento que a mensagem chega, origem registra o RTT
 -> Esse processo só cessa quando segmento UDP eventualmente chage ao destinatário
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 IPv6 
 
@@ -74,7 +74,7 @@ Formato do Datagrama:
 https://www.gta.ufrj.br/ensino/eel879/trabalhos_vf_2009_2/priscilla/images/cabecalho.jpg
 
 Classe de tráfego: identifica prioridade do datagrama em relação a outros gerados pela mesma origem 
-Rótulo de fluxo: identifica datagramas pertncentes a um mesmo "fluxo"
+Rótulo de fluxo: identifica datagramas pertecentes a um mesmo "fluxo"
 Próximo cabeçalho: identifica protocolo para a carga útil do pacote
 
 Mudanças com relação ao IPv4: removeu o checksum (reduzir tempo de processamento), as opções são permitidas, mas fora do cabeçalho, indicado pelo valor do campo próximo e ICMPv6 

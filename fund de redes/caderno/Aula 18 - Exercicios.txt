@@ -1,0 +1,36 @@
+Algoritmo Dijkstra: 
+
+Inicialização: 
+
+N' = {u}
+para todos os nós v 
+	se v for um vizinho do nó u 
+		então D(v) = c(u,v)
+	senão D(v) = infinito
+
+Início do Loop: 
+	encontre x não contido em N' tal que D(x) é um mínimo
+	adicione x ao conjunto N'
+	atualize D(v) para cada vizinho v de x e ainda não em N': 
+		D(v)= min(D(v), D(x) + c(x,v))
+	/* o novo custo ao nó v é o custo velho a v ou o custo do menor caminho conhecido para x, mais o custo de x a v */ 
+VOLTE AO INÍCIO DO LOOP até que todos os nós da rede estejam em N'
+
+
+P26.
+
+> Etapa: 0, 1, 2, 3, 4, 5, 6
+
+> N': xvwyutz
+
+> D(t),p(t): infinito,7v
+
+> D(u),p(u): infinito, 6v
+
+> D(v),p(v): 3x
+
+> D(w),p(w): 6x
+
+> D(y),p(y): 6x
+
+> D(z),p(z): 8x

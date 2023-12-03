@@ -1,0 +1,75 @@
+----------------------------------------------------------------------------------------------------------------
+ROTEAMENTO BROADCAST: 
+
+Objetivo: enviar um pacote para todos os nós da rede. 
+
+Replicação na Rede: 
+
+> Inundação: quando nó recebe pacote em broadcast, envia cópias para todos os seus vizinhos, e assim por diante
+> Problemas: ciclos e tempestade de broadcast
+> Inundação Controlada: nó só envia cópias se está é a primeira recepção deste pacote
+	• Nós mantêm lista dos IDs dos pacotes já replicados 
+	• Protocolo Reverse Path forwarding (RPF): apenas replica pacotes que chegaram pelo enlace de próximo salto do caminho entre o nó corrente e a origem
+
+Árvore Geradora (Spanning Tree): 
+
+> Nós nunca rebem pacotes redudantes
+
+-Criação Distribuída:
+> Elege-se um nó central
+> Cada nó envia uma mensagem join em unicast para o nó central (mensagem encaminhada normalmente até que chega a um nó que já pertence à árvore geradora)
+
+----------------------------------------------------------------------------------------------------------------
+ROTEAMENTO MULTICAST: 
+
+Objetivo: enviar um pacote para um grupo de hosts de destino, e não para todos os hosts da rede como ocorre no envio por Broadcast
+
+- O grupo terá um identificador:um endereço IP da classe D
+
+PROTOCOLO IGMP (Internet Group Management Protocol): 
+
+- Opera entre um hosperdeiro e o roteador diretamente conectado a ele
+- Permite que o host informe ao roteador que ele necessita participar de um grupo multicast
+
+Mensagens IGMP: 
+• membership_query 
+• membership_report
+• leave_group
+
+Algoritmos de roteamento para grupos Multicast: 
+
+Objetivo: encontrar uma árvore(s) conectando roteadores membros de um grupo multicast (nem todos os enlaces da rede são usados) 
+
+> Abordagens para construção da árvore: 
+• Árvore Compartilhada: uma mesma árvore é usa por todos os membros do grupo
+- Árvore de caminhos mais curtos 
+- Árvore vaseadas em nó central
+• Enraizada na Fonte: árovres diferentes para cada transmissor do grupo
+- Árvore de caminhos mais curtos
+- Encaminhamento beaseado no caminhho reverso (RPF)
+
+RPF (ENCAMINHAMENTO BEASEADO NO CAMINHO REVERSO): 
+
+- Se baseia no conhecimento dos roteadores sobre os caminhos unicast mais curtos para a origem 
+- Cada roteador aplica o seguite algoritmno para realizar o encaminhamento: 
+
+• Se (datagrama multicastfoi recebido na enlace de próximo salto no caminho mais curto de volta à origem)
+	> Então inunde datagrama para todos os enlaces de saída
+	> Senão ignore datagrama
+
+Poda: 
+
+- Árvore de encaminhamento contém sub-árvores sem membros do grupo multicast
+> Não é necessário encaminhar datagramas por estas sub-árvores
+> Mensagensde "poda" enviadas em direção à origem por roteadores sem membros conectados
+
+Árvore Beseada em Nó Central: 
+
+- Uma única árvore de encaminhamento compartilhada por todos os nós
+- Um roteador se defino como o "centro" da árvore
+- Para se juntar ao grupo: 
+• roteador de borda envia mensagem unicast do tipo join endereçada ao centro da árvore
+• mensagem é processada pelos roteadroes intermediários e encaminhada em direção ao centro
+• a mensagem de join ou chega ao centro ou chega a algum ramo já existente da árvore
+• caminho usado pela mensagem join se torn, então, um novo ramo da árvorea conectando o novo roteador
+
