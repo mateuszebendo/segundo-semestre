@@ -1,0 +1,105 @@
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+INTRODUÇÃO E SERVIÇOS:
+
+- Resposabilidade da camada de enlace: Transferência dos datagramas entre nós conectados fisicamente por um enlace
+
+Contextualização: 
+
+• Datagramas são transmitidos por diferentes enlaces e protocolos. Ex: ethernet, ADSL, 802.11, Frame Relay,...
+• Analogia de transporte de pessoas: 
+
+> Viagem de NF para gramado
+1. Táxi até o aeroporto
+2. Avião até Porto Alegre
+3. Ônibus até Gramado
+
+- Turista = Datagrama
+- Trechos da viagem = enlaces
+- Meio de transporte = protocolo 
+- Agência de viagem = algoritmo de roteamento
+
+Serviços da Camada de Enlace:
+
+- Encapsulamento: encapsula datagrama em um quadro; adiciona informações à camada de enlace -> header (cabeçalho), trailer;
+
+- Acesso ao enlace: Meio dedicado vs Meio Compartilhado; Se múltiplos nós competem, necessitam coordenação;
+
+- Endereçamento: Endereçamento MAC > identifica origem, destino no cabeçalho do quadro;
+
+- Entraga confiável de dados: Semelhante a camada de transporte (TCP), pouco usado em enlaces com poucos erros: fibras óticas, alguns tipos de par trançado;
+
+- Detecção de erros: erros causados por atenuação de sinal, receptor deve ser capaz de detectá-los, pedindo retransmissão ou descarta o quadro;
+
+- Correção de erros: passo além do anterior, por que o recptor também corrige os erros identificados;
+
+- Controle de fluxo: evitar afogar o receptor, como no contexto do TCP, mas aqui entre dois nós adjacentes
+
+- Transmissão full-duplex ou half-duplex: sendo duplex a tramissão em ambos os sentidos, a half duplex em um sentido de cada vez e a full-duplex a transmissão simultanea;
+
+Onde a Camada de Enlace é Implementada: 
+
+- Presente em todos os nós
+- Implementada no adaptador de rede (placa de rede ou NIC) 
+- Uma combinação de hardware e software
+
+Comunicação entre Adaptadores:
+
+• Transmissor: 
+> Encapsula datagrama em quadro (adiciona informações para verficação/correção de erros, controle de fluxo, transmissão confiável
+
+• Receptor: 
+> Verifica/recupera erros, transmissão confiável de dados
+> Extrai datagrama, repassa para camadas superiores
+
+Detecção de Erros:
+
+- EDC: bits de deteccção e correção de erros 
+- D: dados protegidos pela redundância
+- Deteccção de erros é probabilística (embora a chance seja baixa, pode acabar falhando; quando mais bits no EDC, menor a probabilidade)
+
+https://image1.slideserve.com/3572180/slide9-l.jpg
+
+Ou seja, junto com os dados originais, como o cabeçalho, é enviado um pacote de dados adicionais com o objeto de que caso os dados sejam corrompidos eles possam ser corrigos sem a necessidade de retransmissão. 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TÉCNICAS DE CORREÇÃO DE ERROS:
+
+Paridade: 
+
+• Um único bit de paridade 
+• Paridade simples ou Paridade ímpar 
+ > Um número de bits é enviado (ex: 01110011) e esse número mais um bit (1) de paridade tem que dar ímpar
+ > Caso essa soma não dê o resultado esperado (ímpar), o receptor saberá que os dados foram corrompidos
+• Paridade bi-dimensional ou Paridade par:
+ > Os dados são organizados em uma matriz e os bits de paridade são calculados tanto para cada linha quanto para coluna
+ > Isso permite a deteccçãode erros em duas dimensões, aumentando a probabilidade de encontrar erros
+ > Como funciona:
+	1. Organização de dados: Os bits de dados são organizados em uma matriz, linha a linha 
+	2. Cálculo de paridade: São calculados os bits de paridade para linha e para coluna dessa matriz. Isso resulta em uma matriz estendida com um linha extra e uma coluna extra de bits de paridade. 
+	3. Transmissão dos dados: A matriz estendida (dados + bits de paridade) é então transmitida
+	4. Detecção de erros: No receptor, os bits de paridade são recalculados e comparados com os bits de paridade recebidos. Se houver uma discrepância, um erro é dectado
+
+Internet Checksum: 
+
+Outra forma de verificar a integridade de dados;
+
+Transmissor: 
+- Trata a mensagem como sequência de números de 16 bits;
+- Números são somados em complemento a1 (soma 1 aos números e inverte o resultado);
+- Resultado é armazenado na mensagem;
+
+Receptor: 
+- Computa o checksum da mensagem recebida;
+- Compara o valor computado com o valor encontrado na mensagem;
+- Caso esteja errado, os dados são simplesmente descartados;
+
+Falsos positivos: o valor do checksum em si pode ser corrompido, fazendo com que uma mensagem certa seja descartada ou que uma mensagem errada seja aceita; 
+
+CRC (Verificação de Redundância Cíclica):
+
+- Trata uma mensagem M como um polinômio D
+- Bits são coeficientes
+- M = 1 1 0 1 0 vai virar o polinômio D = x^4 + x^3 + x^1 (os coeficientes são equivalentes as posições dos bits)
+- Escollhe um polinômio gerador G com r+1 (grau r)
+- Encontra um polinômio R da seguinte forma: R = resto de (D*x^r)/G
+

@@ -1,0 +1,52 @@
+Questão 1 - 
+
+Nessa questão é necessário alocar três endereços IPs: um para a subrede do roteador R1, outra para o roteador R2 e uma para subrede composta pelos dois roteadores. A faixa de endereços IP fornecida é a IP 200.10.10.0/27. Isso sendo que os segmentos com o maior número de host recebam endereços mais próximos do início do espaço de endereçamento disponível. 
+
+Para resolver a questão, é necessário começar determinando o tamanho de cada sub-rede, levando em considereção o número de hosts de cada uma.
+
+> Sub-rede R1:
+
+Como dita a questão, vamos começar endereçando os segmentos com maior número de hosts. Essa seria LAN do roteador R1, com 5 hosts. Seguindo o IPv4, temos 32 bits para endereços de máscaras.
+Essa subrede receberá o endereço mais próximo do iníciodo espaço, sendo esse o 200.10.10.0. A máscara que essa subrede receberá tem que ser equivalente ao menor número que é uma potência de 2 e que é maior ou igual ao número de hosts mais 2 (para o endereço de rede e o endereço de broadcast). Desta forma, como essa subrede possui 5 hosts, a menor potência de 2 seria 2^3 (8). Logo, são necessários 3 bits para a alocação dos endereços de hos. Desta forma, já que o IPv4 tem 32 bits e 3 estão usados, sobram 29 para a rede. Portanto, a máscara de subrede seria /29.
+No final, o endereço completo é 200.10.10.0/29.
+
+> Sub-rede R2:
+
+A segunda sub-rede com mais hosts é a LAN do roteador R2, então ela receberá o endereço seguinte: 200.10.10.8. Esse endereço recebe um incremento de 8 já que seu antecessor utilizou 3 bits (uma máscara /29) para alocar os seus. E da mesma forma que foi feita na outra, é necessário encontrar a menor potência de 2 decrementada de 2 que seja maior que o número de hosts, que também é 5. Portanto, o número da máscara dessa sub-rede também será 2^3 - 2, ou, /29.
+
+> Sub-rede R3:
+
+A terceira e última sub-rede é composta apenas pelos roteadores R1 e R2. Desta forma, é necessário fazer o mesmo processo que das LANs anteriores: 
+
+Esta sub-rede receberá o endereço 200.10.10.16, já que a máscara da sua antecessora utilizou a numeração /29, que significa que a mesma utilizou 2^3 ou 3 bits ou 8 para a alocação de seus endereços, assim incrementando em 8 o próximo endereço da rede. Além disso, como essa LAN é composta apenas por dois hosts, a potência de dois decrementada de dois mais próxima é 2^2, ou 2 bits. Assim, o endereço final ficará  200.10.10.16/30.
+
+Questão 2 - 
+
+A segunda questão trata do bloqueio HOL em switches. 
+
+> Esse bloqueio acontece quando existe um pacote na frente que está sendo retido e impete que os outros sejam enviados, mesmo com suas portas de saídas livres.
+> Esse bloqueio acontece justamente na porta de entrada dos switches, pois os mesmos usam uma estratégia de buffer de entrada, onde os pacotes são armazenados em uma fila na porta de entrada até que possam ser processados. 
+
+Questão 3 - 
+
+Essa questão trata da Sala de Telecomunicações. 
+
+A Sala de telecomunicações interconecta cabeamento horizontal e de backbone do edifício. Abriga os 
+distribuidores de piso e normalmente temos uma sala dessas em cada andar do edifício
+
+Questão 4 - 
+
+Nesta questão, é necessário determinar a melhor correspondência para o endereço IP de destino do pacote. A correspondência é feita com base na faixa dos endereços IPs da tabela de roteamento. Por exemplo:
+
+a) 200.20.45.45: Este endereço não se encaixa nas duas primeiras entradas da tabela de roteamento, mas se encaixa na terceira entrada (200.20.44.0), pois 200.20.45.45 está dentro da faixa definida por 200.20.45.45/22. Essa faixa é definida pela máscara de sub-rede /22, que significa que os primeiros 22 bits do endereço IP são usados para identificar a rede e os últimos 10 para identificar os hosts da rede. Isso permite 2^10 - 2 (ou seja, 1022) hosts na rede. 
+Portanto, o primeiro endereço IP utilizável na rede é 200.20.44.1 e o último endereço IP utilizável é 200.20.47.254. Sendo assim, 200.20.45.45 está dentro dessa faixa. 
+
+b) 136.52.45.45: Este endereço se encaixa na segunda entrada da tabenla de roteamento (136.52.44.0/23), pois 136.52.45.45 está dentro da faixa de endereços definida por 136.52.44.0/23. Portanto, a Interface de saída seria a Interface 0. 
+
+c) 200.20.47.5: Este endereço se encaixa na primeira entrada da tabela de roteamento (200.20.47.0/24), pois 200.20.47.5 está dentro da faixa de endereços definida por 200.20.47.0/24. Portanto, a Interface de saída seria a Interface 0.
+
+d) 136.52.43.1: Este endereço não se encaixa em nenhuma das entradas específicas da tabela de roteamento, portanto, o roteador usaria a rota padrão para encaminhar o pacote. Portanto, a Interface de saída seria a Interface 3.
+
+Questão 5 - 
+
+
