@@ -1,0 +1,9 @@
+Entidade: Una entidade é um objeto ou conceito sobre o qual queremos armazenar informações. Por exemplo, em um banco de dados de uma bibliotece, as entidades podem ser 'Livro','Autor','Editora', etc.
+
+Atributo: Um atributo é uma propriedade ou característica de uma entidade. Por exemplo, para a entidade 'Livro', os atributos podem ser 'Título', 'Autor', 'Ano de Publicação', etc.
+
+Tupla: Uma tupla é um conjunto de valores para um determinado conjunto de atributos e pode ser pensada com uma linha em uma tabela de banco de dados. Por exemplo, uma tupla para a entidade 'Livro' pode ser ('O Senhor dos Anéis', 'J.R.R Tolkien', '1954').
+
+Cardinalidade: A cardinalidade define o número de ocorrências de uma entidade que podem estar associadas a outra entidade por meio de um relacionamento. Por exemplo, a cardinalidade do relacionamento entre as entidades 'Livros' e 'Autor' pode ser 'muitos para um', pois um livro pode ter apenas um ator, mas um autor pode escrever muitos livros. 
+
+Chaves: Uma chave é um atributo ou conjunto de atributos que identificam de forma única uma tupla em uma tabela. Por exemplo, 'ISBN' pode ser uma chave para a entidade 'Livro', pois cada livro tem um número ISBN único. 

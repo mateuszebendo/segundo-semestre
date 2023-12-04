@@ -1,0 +1,12 @@
+> Dado: 
+
+Na modelagem de dados, um dado é a menor unidade de informação que pode ser armazenada em um sistema de banco de dados. É um fato em seu estado bruto, sem nenhum contexto ou tratamento. Por exemplo, um número como "12345" é um dado. No entanto, sem qualquer contexto, é difícil entender o que esse número representa. 
+
+> Informação:
+
+A informação é um dado colocado em um certo contexto, fornecendo significado a esse dado. Por exemplo, se dissermos que "12345" é o número de um produto em um inventário, esse dado agora se tornou informação porque temos um contexto (é um número de produto) e um significado (representa um item específico em um inventário).
+
+> Conhecimento:
+
+O conhecimento vai um passo além da informação. É a informação colocada em prática e usada para tomar decisões ou realizar ações. Por exemplo, sa sabamos que o produto "12345" está com baixo estoque e também sabmos que é um produto popular que se vende rapidamente, podemos usar esse conhecimento para tomar a decisão de pedir mais desse produto. Portanto, o conhecimento é a aplicação prática da informação. 
+
