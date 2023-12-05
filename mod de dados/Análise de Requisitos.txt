@@ -1,0 +1,7 @@
+A modelagem de dados conceitual é uma etapa fundamental no desenvolvimento de sistemas de informação, sendo utilizada para representar e descrever os requisitos e estrutura de um banco de dados de uma forma independente de tecnologia ou implementação física. O objetivo principal é capturar os conceitos e relações-chave entre os dados de um domínio específico, sem se preocupar com detalhes técnicos.
+
+Nessa fase, são criados modelos conceituais que fornecem uma visão abstrata e de alto nível dos dados, utilizando ferramentas como diagramas de entidade-relacionamento ou modelos de entidade e atributo. Esses modelos representam entidades (objetos do mundo real, como  pessoas, lugares, objetos), seus atributos (características dessas entidades) e os relacionamentos entre elas.
+
+Por exemplo, vamos modelar uma relação Professor-Aula. 
+
+Como essa relação se dá no mundo real ?  Um professor leciona uma ou mais aulas, enquanto uma aula só pode ser dada por um professor.
